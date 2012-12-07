@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" xmlns="http://www.w3.org/1999/xhtml"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <title></title>
+  <meta name="description" content="Lebowski Ipsum: Lorem Ipsum for achievers. Fill your placeholder text with Big Lebowski quotes and show your clients what happens when...">
+  <meta name="kewyords" content="The Dude, Lebowski, Lorem Ipsum, Ipsum Generator, Filler Text, Placeholder Text">
+  <meta name="google-site-verification" content="2ud3Duc2vERVUp61vkO4HmStC7GAq9QfdY8rf9NjqMs" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <!-- MODERNIZR -->
+
+</head>
+
+<body id="<%= controller.controller_name %>">
+
+  <div id="container">
+
+  <div id="ball"><!-- Just while Cynthia's out of town --></div>
+
+    <header>
+    <hgroup>
+      <h1><%= link_to 'Lebowski Ipsum', home_path %></h1>
+      <h2>Filler text that ties the room together</h2>
+    </hgroup>
+    </header>
+    <div id="main" role="main">
+
+      <%= yield %>
+
+    </div>
+
+  </div> <!--#container -->
+
+  <footer id="pageFooter">
+
+    <div class="wrapper">
+
+      <section id="toe">
+        <h3>Want a toe?</h3>
+        <p>We can get you a toe! Don't have your favourite quote? Found a typo or misquote? <%= obfuscate_email 'Email us', 'thiswillnotstand@lebowskiipsum.com' %>.</p>
+      </section>
+
+      <section id="electronic">
+        <h3>100% Electronic</h3>
+        <p>New technology permits us to do exciting things with interactive social software&hellip; Wave of the future, dude. Share the love!.</p>
+        <ul>
+          <li id="twitter-small"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://lebowskiipsum.com" data-text="Lebowski Ipsum: Filler text that ties the room together!" data-count="horizontal">Tweet</a></li>
+          <li id="facebook-small"><div class="fb-like" data-href="http://lebowskiipsum.com" data-send="false" data-layout="button_count" data-width="60" data-show-faces="false"></div></li>
+          <li id="plusone-small"><div class="g-plusone" data-size="medium" data-href="http://lebowskiipsum.com"></div></li>
+        </ul>
+      </section>
+
+      <section id="whoddunit">
+        <h3>Whodunnit?</h3>
+        <p>The film is © The Coen Brothers and Universal Studios (we think). Site lovingly developed by the folks at <a href="http://www.koodoz.com.au" title="Web Design Melbourne">Koodoz Design</a> - 100% Achievers.</p>
+      </section>
+
+    </div>
+
+  </footer>
+
+  <!-- gotz teh social media -->
+  <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <script type="text/javascript">
+  (function() {
+  var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+  po.src = 'https://apis.google.com/js/plusone.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+  </script>
+
+  <script>
+      var _gaq=[['_setAccount','UA-3019794-54'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
