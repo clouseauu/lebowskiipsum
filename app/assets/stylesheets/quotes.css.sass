@@ -1,3 +1,464 @@
-// Place all the styles related to the Quotes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// /*
+//  *Lebowski Ipsum: "Because we can!"
+//  *Design: Marc Katsambis
+//  *Everything else (Front and backend): Daniel Angel
+//  *Don't like it? That's just, like, your opinion, man!
+// */
+html
+  background-image: image-url("bowl-lines.png"), image-url("tiles.jpg"), image-url("background.png")
+  background-position: top center, top center, top center
+  background-repeat: no-repeat, repeat-y, repeat
+
+html.oldie
+  background: image-url("ie-bg.jpg") top center repeat-y
+
+body
+  color: #43241C
+  font-family: Helvetica, Arial, sans-serif
+  font-size: 14px
+  font-weight: bold
+  +textshadow(0, 1px, 0, #a3596f)
+
+// Layout elements
+#container
+  position: relative
+  margin: 0 auto
+  width: 960px
+  min-height: 650px
+
+#ball
+  background: image-url("ball.png") center center no-repeat
+  height: 841px
+  left: 60px
+  position: fixed
+  top: -235px
+  left: 50%
+  margin-left: -420px
+  width: 841px
+  z-index: -10
+
+header
+  padding-top: 60px
+  hgroup
+    background: image-url("titles.png") -78px 0 no-repeat
+    height: 73px
+    margin: auto
+    width: 533px
+    h1
+      height: 50px
+      a
+        display: block
+        height: 100%
+        +hide-text
+    h2
+      +hide-text
+
+.wrapper
+  background: rgba(128, 128, 0, 0.2)
+  margin: 0 auto
+  width: 960px
+
+#main
+  margin: auto
+  position: relative
+  width: 840px
+  h2
+    background: image-url("titles.png") no-repeat
+    margin: 0 auto
+    +hide-text
+  .step
+    display: none
+    &.active
+      display: block
+  .next
+    background: image-url("next.png") top left no-repeat
+    height: 57px
+    margin: auto
+    position: relative
+    width: 95px
+    +transition("opacity", 0.3s)
+    &:hover
+      opacity: .65
+    a
+      display: block
+      height: 100%
+      overflow: hidden
+      +hide-text
+    span
+      background: image-url("next.png") bottom center no-repeat
+      display: block
+      height: 100%
+      position: absolute
+      top: 0
+      width: 100%
+      z-index: -3
+
+body.step1 #main
+  height: 550px
+
+body.step2 #main
+  height: 1100px
+
+// /* steps
+// /* Step 1
+
+#step1
+  background: image-url("andor.png") 179px 110px no-repeat
+  left: 55px
+  position: absolute
+  top: 35px
+  h2
+    background-position: 0 -106px
+    height: 49px
+    margin-bottom: 30px
+    width: 732px
+  button
+    width: 173px
+  .fc
+    float: left
+    position: relative
+    +rounded-corners(7px)
+    +boxshadow(0, 1px, 0px, rgba(255, 255, 255, 0.19))
+    label
+      position: absolute
+      left: 18px
+      text-align: center
+      top: 130px
+      width: 140px
+      &.b
+        left: 0
+        width: 123px
+
+#p-paragraphs
+  margin: 0 70px 0 50px
+
+#p-abide
+  margin: 0 90px 0 0
+
+// /* Step 2
+
+#step2
+  background: image-url("andor.png") 279px -84px no-repeat
+  left: 110px
+  position: absolute
+  top: 405px
+  width: 620px
+  h2
+    background-position: -56px -176px
+    height: 34px
+    width: 588px
+  .explain
+    text-align: center
+    margin: 30px 0
+  .radio
+    width: 243px
+  .p-radio
+    display: inline-block
+    width: auto
+    +rounded-corners(7px)
+    +boxshadow(0, 1px, 0px, rgba(255, 255, 255, 0.19))
+    input
+      position: absolute
+      top: 0
+  #p-fuckina
+    margin-right: 90px
+  .next
+    margin-top: 100px
+
+// /* Step 3
+
+#step3
+  position: absolute
+  left: 100px
+  top: 1090px
+  .d-options
+    float: left
+    margin-left: 20px
+    width: 200px
+    label
+      background: image-url("titles.png") -16px -246px no-repeat
+      display: block
+      height: 77px
+      +hide-text
+    input[type=checkbox]
+      display: block
+    &#whiteRussian
+      margin-left: 0
+    &#theDude
+      label
+        background-position: -264px -246px
+      em
+        background-position: -146px 50%
+    &#zeePicsInBlanket
+      label
+        background-position: -511px -246px
+      em
+        background-position: -330px 50%
+    .checkbox
+      width: 105px
+      +lebowskify
+      em
+        background: image-url("options-bg.png") 30px 50% no-repeat
+        display: block
+        height: 100%
+    .ws
+      margin: 30px auto
+      width: 123px
+      +boxshadow(0, 1px, 0px, rgba(255, 255, 255, 0.19))
+      +rounded-corners(7px)
+    p
+      text-align: center
+  .next
+    margin-top: 50px
+
+#step4
+  height: 500px
+  position: absolute
+  left: 100px
+  top: 1760px
+  h2
+    background-position: -34px -359px
+    height: 45px
+    width: 638px
+  .explain
+    margin: 30px 0
+    text-align: center
+  .checkbox
+    background: image-url("checkbox.png") top left no-repeat
+    display: inline-block
+    height: 34px
+    width: 37px
+    +transition("opacity", 0.3s)
+    &:hover
+      opacity: .85
+    &.off
+      background-position: bottom left
+  p
+    label
+      position: relative
+      left: 5px
+      top: -12px
+  .col
+    float: left
+    width: 220px
+    &.cola
+      margin: 0 15px 0 122px
+    &.colb
+    p
+      margin-bottom: 10px
+  button
+    display: block
+    margin: 40px auto 0
+    width: 400px
+
+.oldie #step4 p label
+  left: 10px
+  top: 17px
+
+// /* Generated lipsum
+#generated
+  #ball
+    position: absolute
+  #main
+    h2
+      background-position: -52px -430px
+      height: 45px
+      margin: 25px auto 15px
+      width: 629px
+    .explain
+      text-align: center
+    .sharing
+      text-align: center
+      margin: 20px 0
+
+#lipsum
+  margin-top: 15px
+  text-align: center
+
+#social
+  margin: auto
+  width: 195px
+  > div, > p
+    display: inline-block !important
+    margin-left: 15px
+  .fb-like
+    // /* behave, you filthy motherfucker!!
+    position: relative
+    top: -3px !important
+    left: -4px !important
+  #twitter-big
+    margin-left: 0
+  #___plusone_0
+    margin-left: 12px !important
+
+// /* forms, general
+
+input
+  border: none
+
+textarea
+  background: #757e39
+  border: none
+  color: #f3e8c1
+  font-size: 12px
+  height: 170px
+  line-height: 1.3em
+  padding: 15px
+  width: 546px
+  +insetshadow(0, 3px, 3px, rgba(0, 0, 0, 0.4))
+  +rounded-corners(7px)
+
+button, .radio
+  +lebowskify
+
+input[type=text]
+  background: #65392E
+  color: #F3E8C1
+  font-family: "Mesquite", Impact, sans-serif
+  font-size: 90px
+  height: 94px
+  padding: 15px 0 0 0
+  text-align: center
+  width: 123px
+  +rounded-corners(7px)
+  +insetshadow(0, 3px, 3px, #352922)
+  +textshadow(0, 3px, 3px, #402b15)
+
+.oldie #paragraphs
+  font-size: 70px
+  line-height: 94px
+  padding: 0
+
+#pageFooter
+  background: image-url("footer-bg.jpg") repeat-x
+  color: #88795d
+  font-weight: normal
+  height: 591px
+  +textshadow(0, 1px, 0, #e4d8ae)
+  section
+    float: left
+    line-height: 1.6em
+    margin: 300px 0 0 20px
+    width: 320px
+    h3
+      background: image-url("footer-titles.png") 0 2px no-repeat
+      height: 27px
+      margin-bottom: 30px
+      +hide-text
+    &#toe
+      margin-left: 0
+      padding-right: 50px
+      width: 230px
+    &#electronic h3
+      background-position: 0 -69px
+    &#whoddunit h3
+      background-position: 0 -138px
+  a
+    color: #743043
+    text-decoration: none
+
+#electronic
+  ul
+    margin: 20px 0 0
+  li
+    display: inline-block
+    list-style: none
+
+#facebook-small
+  position: relative
+  top: -3px
+
+// /* ==|== non-semantic helper classes ========================================
+.ir
+  display: block
+  border: 0
+  text-indent: -999em
+  overflow: hidden
+  background-color: transparent
+  background-repeat: no-repeat
+  text-align: left
+  direction: ltr
+
+.ir br
+  display: none
+
+.hidden
+  display: none !important
+  visibility: hidden
+
+.visuallyhidden
+  border: 0
+  clip: rect(0 0 0 0)
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute
+  width: 1px
+
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus
+  clip: auto
+  height: auto
+  margin: 0
+  overflow: visible
+  position: static
+  width: auto
+
+.invisible
+  visibility: hidden
+
+.clearfix:before, .clearfix:after
+  content: ""
+  display: table
+
+.clearfix:after
+  clear: both
+
+.clearfix
+  zoom: 1
+
+.skirt
+  clear: both
+  display: block
+  height: 0px
+
+// /* ==|== media queries ======================================================
+
+@media only screen and (min-width: 480px)
+
+@media only screen and (min-width: 768px)
+
+// /* ==|== print styles =======================================================
+
+@media print
+  *
+    background: transparent !important
+    color: black !important
+    text-shadow: none !important
+    filter: none !important
+    -ms-filter: none !important
+  a, a:visited
+    text-decoration: underline
+  a[href]:after
+    content: " (" attr(href) ")"
+  abbr[title]:after
+    content: " (" attr(title) ")"
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after
+    content: ""
+  pre, blockquote
+    border: 1px solid #999
+    page-break-inside: avoid
+  thead
+    display: table-header-group
+  tr, img
+    page-break-inside: avoid
+  img
+    max-width: 100% !important
+  @page
+    margin: 0.5cm
+
+  p, h2, h3
+    orphans: 3
+    widows: 3
+  h2, h3
+    page-break-after: avoid
