@@ -73,10 +73,10 @@ $.fn.makeNiceCheckboxes = function(options) {
 
 $.fn.makeNiceRadios = function() {
 
-
 	$(this).each(function(i){
 
 		var the_id = $(this).attr('id');
+
 		var the_name = $(this).attr('name');
 		var the_faux_element = '';
 		var the_class = '';

@@ -1,27 +1,120 @@
-<h1>Listing quotes</h1>
+<%= form_tag do  %>
 
-<table>
-  <tr>
-    <th>Character</th>
-    <th>Quote</th>
-    <th>Cussin</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<fieldset id="step1" class="step active">
 
-<% @quotes.each do |quote| %>
-  <tr>
-    <td><%= quote.character_id %></td>
-    <td><%= quote.quote %></td>
-    <td><%= quote.cussin %></td>
-    <td><%= link_to 'Show', quote %></td>
-    <td><%= link_to 'Edit', edit_quote_path(quote) %></td>
-    <td><%= link_to 'Destroy', quote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <h2 id="howmany">How many paragraphs, man?</h2>
 
-<br />
+  <p id="p-paragraphs" class="fc">
+    <%= text_field_tag :paragraphs, 5, id: 'paragraphs' %>
+    <label class="b" for="paragraphs">Enter the number of paragraphs</label>
+  </p>
 
-<%= link_to 'New Quote', new_quote_path %>
+  <p class="fc" id="p-abide">
+    <button type="submit" id="abide"><span>Abide</span></button>
+    <label>It's Shabbos, Dude. Just get the text!</label>
+  </p>
+
+  <p class="fc" id="p-roll">
+    <button type="submit" id="roll"><span>Roll</span></button>
+    <label>Lebowski-fy the hell out of it!</label>
+  </p>
+
+</fieldset>
+
+
+<fieldset id="step2" class="step">
+
+  <h2>Throw in some Cussin'?</h2>
+  <p class="explain">Keep it <abbr title="Not safe for work!">NSFW</abbr> or squeaky clean for client work</p>
+
+  <p class="p-cussin p-radio" id="p-fuckina">
+    <label for="cussin-yes">Fuckin' A!</label>
+    <%= radio_button_tag :cussin, true, true, id: 'cussin-yes'  %>
+  </p>
+  <p class="p-cussin p-radio" id="p-nosir">
+    <label for="cussin-no">No, Sir</label>
+    <%= radio_button_tag :cussin, false, false, id: 'cussin-no'  %>
+  </p>
+
+  <p class="next"><a href="#">Next!</a></p>
+
+</fieldset>
+
+
+<fieldset id="step3" class="step">
+
+  <div class="d-options p-checkbox" id="whiteRussian">
+    <label for="mixed">Mixed with Lipsum?</label>
+    <%= hidden_field_tag :mixed, false, id: 'mixed-false' %>
+    <%= check_box_tag :mixed, true, true, id: 'mixed' %>
+    <p>Mix Lebowski quotes with old fashioned Lorem Ipsum</p>
+  </div>
+
+  <div class="d-options p-checkbox" id="theDude">
+    <label for="startleb">Start with Lebowski Ipsum?</label>
+    <%= hidden_field_tag :startleb, false, id: 'startleb-false' %>
+    <%= check_box_tag :startleb, true, true, id: 'startleb' %>
+    <p>Start the first paragraph with 'Lebowski Ipsum'</p>
+  </div>
+
+  <div class="d-options p-checkbox" id="zeePicsInBlanket">
+    <label for="html">HTML?</label>
+    <%= hidden_field_tag :html, false, id: 'html-false' %>
+    <%= check_box_tag :html, true, false, id: 'html' %>
+    <p>Wrap your filler text in zee HTML tacs, OK?</p>
+  </div>
+
+  <span class="skirt"><!-- Shhh ... go read some quotes --></span>
+
+  <p class="next"><a href="#">Next!</a></p>
+
+</fieldset>
+
+
+<fieldset id="step4" class="step">
+
+  <h2>Shut the fuck up, Donny!</h2>
+  <p class="explain">Want to refine the dialogue? Select your characters below:</p>
+
+  <div class="col cola">
+
+
+
+
+
+  <?php
+
+  $halfCharacters = ceil(count($mainCharacters)/2);
+  $split = false;
+  $counter = 1;
+
+
+
+  foreach($mainCharacters as $value => $name):
+
+    /* uncheck donny :) */
+    $checked = ($value != 4) ? true : false;
+    $id = strtolower(str_replace(' ', '', $name));
+
+    if($counter > $halfCharacters && !$split) {
+      echo '</div><div class="col colb">';
+      $split = true;
+    }
+
+
+  ?><p>
+    <?php echo form_checkbox(array('name' => 'characters[]', 'id' => 'character-' . $id, 'checked' => $checked, 'value' => $value)); ?>
+    <label for="character-<?php echo $id; ?>"><?php echo $name; ?></label>
+  </p>
+  <?php $counter++; endforeach; ?>
+  </div>
+  <span class="skirt"><!-- seriously. go read some quotes! --></span>
+
+  <button type="submit"><span>Pull the Trigger!</span></button>
+
+</fieldset>
+
+
+
+<%- end -%>
+

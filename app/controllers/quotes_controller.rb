@@ -2,8 +2,6 @@ class QuotesController < ApplicationController
   # GET /quotes
   # GET /quotes.json
   def index
-    @quotes = Quote.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @quotes }

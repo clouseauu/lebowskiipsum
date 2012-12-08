@@ -5,17 +5,17 @@ $aLightGrey: #EAE9EA;
 
 // -- fonts
 
-// $font-face {
-//     font-family: 'Mesquite';
-//     src: url('../fonts/mesquitestd-webfont.eot');
-//     src: url('../fonts/mesquitestd-webfont.eot?#iefix') format('embedded-opentype'),
-//          url('../fonts/mesquitestd-webfont.woff') format('woff'),
-//          url('../fonts/mesquitestd-webfont.ttf') format('truetype'),
-//          url('../fonts/mesquitestd-webfont.svg#MesquiteStdMedium') format('svg');
-//     font-weight: normal;
-//     font-style: normal;
+@font-face {
+    font-family: 'Mesquite';
+    src: url(asset_path('mesquitestd-webfont.eot', font));
+    src: url(asset_path('mesquitestd-webfont.eot?#iefix', font)) format('embedded-opentype'),
+         url(asset_path('mesquitestd-webfont.woff', font)) format('woff'),
+         url(asset_path('mesquitestd-webfont.ttf', font)) format('truetype'),
+         url(asset_path('mesquitestd-webfont.svg#MesquiteStdMedium', font)) format('svg');
+    font-weight: normal;
+    font-style: normal;
 
-// }
+}
 
 
 @mixin boxshadow($h,$v,$f,$c) {
@@ -140,7 +140,7 @@ $aLightGrey: #EAE9EA;
 
 
   span {
-    background: url(../images/button-bg.jpg) top left repeat-x;
+    background: image-url("button-bg.jpg") top left repeat-x;
     display: block;
     font-weight: normal !important;
     height: 89px;
@@ -154,7 +154,7 @@ $aLightGrey: #EAE9EA;
 
   &.on {
     span {
-      background: url(../images/button-bg-selected.jpg) top left repeat-x;
+      background: image-url("button-bg-selected.jpg") top left repeat-x;
       color: #5C3D1B;
       line-height: 96px;
       @include textshadow(0,1px,1px,rgba(255,255,255,.3));
