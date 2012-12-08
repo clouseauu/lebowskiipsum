@@ -1,27 +1,101 @@
-<h1>Listing characters</h1>
+<%= form_tag do  %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Short name</th>
-    <th>Is main</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<fieldset id="step1" class="step active">
 
-<% @characters.each do |character| %>
-  <tr>
-    <td><%= character.name %></td>
-    <td><%= character.short_name %></td>
-    <td><%= character.is_main %></td>
-    <td><%= link_to 'Show', character %></td>
-    <td><%= link_to 'Edit', edit_character_path(character) %></td>
-    <td><%= link_to 'Destroy', character, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <h2 id="howmany">How many paragraphs, man?</h2>
 
-<br />
+  <p id="p-paragraphs" class="fc">
+    <%= text_field_tag :paragraphs, 5, id: 'paragraphs' %>
+    <label class="b" for="paragraphs">Enter the number of paragraphs</label>
+  </p>
 
-<%= link_to 'New Character', new_character_path %>
+  <p class="fc" id="p-abide">
+    <button type="submit" id="abide"><span>Abide</span></button>
+    <label>It's Shabbos, Dude. Just get the text!</label>
+  </p>
+
+  <p class="fc" id="p-roll">
+    <button type="submit" id="roll"><span>Roll</span></button>
+    <label>Lebowski-fy the hell out of it!</label>
+  </p>
+
+</fieldset>
+
+
+<fieldset id="step2" class="step">
+
+  <h2>Throw in some Cussin'?</h2>
+  <p class="explain">Keep it <abbr title="Not safe for work!">NSFW</abbr> or squeaky clean for client work</p>
+
+  <p class="p-cussin p-radio" id="p-fuckina">
+    <label for="cussin-yes">Fuckin' A!</label>
+    <%= radio_button_tag :cussin, true, true, id: 'cussin-yes'  %>
+  </p>
+  <p class="p-cussin p-radio" id="p-nosir">
+    <label for="cussin-no">No, Sir</label>
+    <%= radio_button_tag :cussin, false, false, id: 'cussin-no'  %>
+  </p>
+
+  <p class="next"><a href="#">Next!</a></p>
+
+</fieldset>
+
+
+<fieldset id="step3" class="step">
+
+  <div class="d-options p-checkbox" id="whiteRussian">
+    <label for="mixed">Mixed with Lipsum?</label>
+    <%= hidden_field_tag :mixed, false, id: 'mixed-false' %>
+    <%= check_box_tag :mixed, true, true, id: 'mixed' %>
+    <p>Mix Lebowski quotes with old fashioned Lorem Ipsum</p>
+  </div>
+
+  <div class="d-options p-checkbox" id="theDude">
+    <label for="startleb">Start with Lebowski Ipsum?</label>
+    <%= hidden_field_tag :startleb, false, id: 'startleb-false' %>
+    <%= check_box_tag :startleb, true, true, id: 'startleb' %>
+    <p>Start the first paragraph with 'Lebowski Ipsum'</p>
+  </div>
+
+  <div class="d-options p-checkbox" id="zeePicsInBlanket">
+    <label for="html">HTML?</label>
+    <%= hidden_field_tag :html, false, id: 'html-false' %>
+    <%= check_box_tag :html, true, false, id: 'html' %>
+    <p>Wrap your filler text in zee HTML tacs, OK?</p>
+  </div>
+
+  <span class="skirt"><!-- Shhh ... go read some quotes --></span>
+
+  <p class="next"><a href="#">Next!</a></p>
+
+</fieldset>
+
+
+<fieldset id="step4" class="step">
+
+  <h2>Shut the fuck up, Donny!</h2>
+  <p class="explain">Want to refine the dialogue? Select your characters below:</p>
+
+  <div class="col cola">
+
+    <%- @main_characters.each_with_index do |character,index| -%>
+      <p>
+        <%= check_box_tag 'characters[]', character.id, (character.short_name != 'donnie'), id: "character-#{character.short_name}" %>
+        <%= label_tag "character-#{character.short_name}", character.name %>
+      </p>
+      <%- if index == @half_point-1 %></div><div class="col colb"><%- end -%>
+    <%- end -%>
+
+      <p>
+        <%= check_box_tag 'characters[]', 'secondary', true, id: 'character-everyoneelse' %>
+        <%= label_tag 'character-everyoneelse', 'Everyone else' %>
+      </p>
+
+  </div>
+  <span class="skirt"><!-- seriously. go read some quotes! --></span>
+
+  <button type="submit"><span>Pull the Trigger!</span></button>
+
+</fieldset>
+
+<%- end -%>
