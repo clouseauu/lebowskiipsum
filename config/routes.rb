@@ -54,6 +54,10 @@ Lebowski::Application.routes.draw do
   # just remember to delete public/index.html.
   root :to => 'characters#index', as: 'home'
 
+  match "robots" => "characters#robots", :as => :robots
+
+  match "dude/generate/(*options)" => "quotes#index", :as => :generate
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

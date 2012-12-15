@@ -2,80 +2,55 @@ class QuotesController < ApplicationController
   # GET /quotes
   # GET /quotes.json
   def index
+
+    @options = NamedParams.new(params['options']).parse_options DEFAULT_OPTIONS
+    validate_options
+
+    conditions = { character_id: @options[:characters] }
+    conditions.merge! cussin: false if @options[:cussin] == false
+
+    @quotes = Quote.all conditions: conditions, order: "RANDOM()"
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @quotes }
     end
   end
 
-  # GET /quotes/1
-  # GET /quotes/1.json
-  def show
-    @quote = Quote.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @quote }
+  private
+
+    def validate_options
+      @options[:paragraphs]     = validate_paragraphs
+      @options[:cussin]         = validate_boolean :cussin
+      @options[:mixed]          = validate_boolean :mixed
+      @options[:startleb]       = validate_boolean :startleb
+      @options[:html]           = validate_boolean :html
+      @options[:characters]     = validate_characters
     end
-  end
 
-  # GET /quotes/new
-  # GET /quotes/new.json
-  def new
-    @quote = Quote.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @quote }
-    end
-  end
-
-  # GET /quotes/1/edit
-  def edit
-    @quote = Quote.find(params[:id])
-  end
-
-  # POST /quotes
-  # POST /quotes.json
-  def create
-    @quote = Quote.new(params[:quote])
-
-    respond_to do |format|
-      if @quote.save
-        format.html { redirect_to @quote, notice: 'Quote was successfully created.' }
-        format.json { render json: @quote, status: :created, location: @quote }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @quote.errors, status: :unprocessable_entity }
+    def validate_paragraphs
+      begin
+        p = @options[:paragraphs].to_i
+        return p if p.to_i > 0 and p.to_i <= 500
+      rescue
       end
+      DEFAULT_OPTIONS[:paragraphs]
     end
-  end
 
-  # PUT /quotes/1
-  # PUT /quotes/1.json
-  def update
-    @quote = Quote.find(params[:id])
-
-    respond_to do |format|
-      if @quote.update_attributes(params[:quote])
-        format.html { redirect_to @quote, notice: 'Quote was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @quote.errors, status: :unprocessable_entity }
-      end
+    def validate_boolean key
+      if @options[key].class == FalseClass or @options[key].class == TrueClass then return @options[key] end
+      DEFAULT_OPTIONS[key]
     end
-  end
 
-  # DELETE /quotes/1
-  # DELETE /quotes/1.json
-  def destroy
-    @quote = Quote.find(params[:id])
-    @quote.destroy
+    def validate_characters
+      c = @options[:characters]
+      c = Array(c) if c.class != Array
+      all_characters = get_all_characters
 
-    respond_to do |format|
-      format.html { redirect_to quotes_url }
-      format.json { head :no_content }
+      return all_characters if c.include? 'all'
+
+      c.map { |s| if s.to_s.downcase == 'minor' then  get_minor_characters.flatten else s end }.flatten.reject { |s| !all_characters.include? s }.uniq.sort
     end
-  end
+
 end

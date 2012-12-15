@@ -1,4 +1,4 @@
-<%= form_tag do  %>
+<%= form_tag(robots_path) do  %>
 
 <fieldset id="step1" class="step active">
 
@@ -87,7 +87,7 @@
     <%- end -%>
 
       <p>
-        <%= check_box_tag 'characters[]', 'secondary', true, id: 'character-everyoneelse' %>
+        <%= check_box_tag 'characters[]', 'minor', true, id: 'character-everyoneelse' %>
         <%= label_tag 'character-everyoneelse', 'Everyone else' %>
       </p>
 

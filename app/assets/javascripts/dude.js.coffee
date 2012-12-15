@@ -8,10 +8,18 @@ initial_height  = 1600
 step_scroll     = 450
 body_main_diff  = 236
 anim_speed      = 300
-step1           = 1
+step            = 1
 
 
 $(document).ready ->
+
+  glowNext = ->
+
+    $('.next span').delay(1000).fadeOut(700, ->
+      $(this).fadeIn(700, ->
+        glowNext()
+      )
+    )
 
   $body = $('body')
   $main = $('#main')
@@ -28,7 +36,7 @@ $(document).ready ->
   $('.checkbox', $step3).wrap '<div class="ws" />'
 
   $('.next').append('<span></span>')
-  # glowNext
+  glowNext()
 
   $body.removeClass('step2 step3 step4').addClass 'step1'
 
@@ -46,7 +54,7 @@ $(document).ready ->
       'min-height': initial_height + 'px'
 
     $('html, body').stop(true,true).animate
-      scroll_top: step_scroll + 'px'
+      scrollTop: step_scroll + 'px'
       , anim_speed
 
     $main.stop(true,true).animate
@@ -127,4 +135,76 @@ $(document).ready ->
         $('#step' + step).fadeIn(anim_speed, ->
           $(this).addClass 'active'
         )
+
+
+  $('form').submit ->
+
+    unless isNumeric( $('#paragraphs').val() )
+      alert 'Hold on there, cowboy! Enter a valid number first'
+      return false
+
+    if parseInt( $('#paragraphs').val() ) > 500
+      alert 'Whoa, man! this won\'t fill your doctoral thesis! 500 paragraphs should be enough.'
+      return false
+
+
+
+  step1Min = 0
+  step1Max = 170
+
+  step2Min = 420
+  step2Max = 650
+
+  step3Min = 1120
+  step3Max = 1330
+
+  step4Min = 1810
+  step4Max = 1980
+
+
+  $(window).scroll ->
+
+      scroll = $(this).scrollTop()
+
+      if scroll > step1Max and $step1.not ':visible'
+        $step1.fadeOut anim_speed
+      else
+        $step1.fadeIn anim_speed
+
+
+      # step2
+      if scroll < step2Min or scroll > step2Max
+
+        # outside the zone
+        if $step2.is ':visible'
+          $step2.fadeOut anim_speed
+
+      else if step >= 2
+        # in the zone
+        if $step2.not ':visible'
+          $step2.fadeIn anim_speed
+
+      # step3
+      if scroll < step3Min or scroll > step3Max
+
+        # outside the zone
+        if $step3.is ':visible'
+          $step3.fadeOut anim_speed
+
+      else if step >= 3
+        # in the zone
+        if $step3.not ':visible'
+          $step3.fadeIn anim_speed
+
+      # step4
+      if scroll < step4Min or scroll > step4Max
+
+        # outside the zone
+        if $step4.is ':visible'
+          $step4.fadeOut anim_speed
+
+      else if step >= 4
+        # in the zone
+        if $step4.not ':visible'
+          $step4.fadeIn anim_speed
 
