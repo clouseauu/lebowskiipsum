@@ -8,7 +8,7 @@ class NamedParams
   end
 
   def parse_options defaults
-    user_options = array_to_param_hash @url_params.split('/')
+    user_options = !@url_params.nil? ? array_to_param_hash(@url_params.split '/') : {}
     defaults.merge(user_options)
   end
 

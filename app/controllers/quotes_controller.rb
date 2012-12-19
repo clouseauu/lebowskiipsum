@@ -10,6 +10,7 @@ class QuotesController < ApplicationController
     conditions.merge! cussin: false if @options[:cussin] == false
 
     @quotes = Quote.all conditions: conditions, order: "RANDOM()"
+    @lebowski_ipsum = LebowskiIpsum.new(@quotes, @options).lebowski_ipsum @options[:paragraphs]
 
     respond_to do |format|
       format.html # index.html.erb

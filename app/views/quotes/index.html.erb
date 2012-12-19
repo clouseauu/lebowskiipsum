@@ -1,1 +1,18 @@
-<h1>This probably needs to be deleted</h1>
+<h2 id="achiever">You little achiever, you!</h2>
+<p class="explain">Copy the Lebowski Ipsum filler, dude!</p>
+
+<p id="lipsum">
+<%= text_area_tag 'lebowskiIpsum', @lebowski_ipsum.join("\n\n"), rows: 30, cols: 150 %>
+</p>
+
+<p class="sharing">Sharing. The physical act of love. Do you like it?</p>
+
+<div id="social">
+  <p id="twitter-big"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://lebowskiipsum.com" data-text="Lebowski Ipsum: Filler text that ties the room together!" data-count="vertical">Tweet</a></p>
+
+  <div class="g-plusone" data-size="tall" data-href="http://lebowskiipsum.com"></div>
+
+  <!-- I like twitter's better -->
+  <div class="fb-like" data-href="http://lebowskiipsum.com" data-send="false" data-layout="box_count" data-width="45" data-show-faces="false"></div>
+
+</div>
