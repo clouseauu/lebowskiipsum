@@ -73,14 +73,14 @@ class LebowskiIpsum
 
     def prepend_lorem_ipsum key = :lebowski
       if key == :lebowski
-        @lipsum[0].prepend "Lebowski ipsum " if @options[:startleb]
+        @lipsum[0].insert 0, "Lebowski ipsum " if @options[:startleb]
       else
-        @lorem[0].prepend "Lorem ipsum " if @options[:startleb]
+        @lorem[0].insert 0, "Lorem ipsum " if @options[:startleb]
       end
     end
 
     def wrap_in_tags
-      @lipsum.map { |s| s.prepend('<p>').concat '</p>' } if @options[:html]
+      @lipsum.map { |s| s.insert(0, '<p>').concat '</p>' } if @options[:html]
     end
 
     def format_sentences sentences
