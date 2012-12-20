@@ -6,13 +6,13 @@
 <head>
   <meta charset="utf-8">
 
-  <title></title>
+  <title><%= yield :title %></title>
   <meta name="description" content="Lebowski Ipsum: Lorem Ipsum for achievers. Fill your placeholder text with Big Lebowski quotes and show your clients what happens when...">
   <meta name="kewyords" content="The Dude, Lebowski, Lorem Ipsum, Ipsum Generator, Filler Text, Placeholder Text">
   <meta name="google-site-verification" content="2ud3Duc2vERVUp61vkO4HmStC7GAq9QfdY8rf9NjqMs" />
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="<%= image_path 'favicon.ico' %>" />
 
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>

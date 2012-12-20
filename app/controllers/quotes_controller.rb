@@ -14,12 +14,19 @@ class QuotesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @quotes }
+      format.json { render json: json_results }
     end
   end
 
 
   private
+
+    def json_results
+      {
+      meta: @options,
+      results: @lebowski_ipsum
+      }
+    end
 
     def validate_options
       @options[:paragraphs]     = validate_paragraphs

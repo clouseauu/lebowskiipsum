@@ -13,6 +13,7 @@ class NamedParams
   end
 
   def array_to_param_hash the_array
+    the_array.pop if the_array.length.odd?
     Hash[*the_array].inject({}) { |memo,(k,v)| memo[k.to_sym] = determine_value_type v; memo }
   end
 
