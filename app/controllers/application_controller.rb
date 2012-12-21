@@ -4,10 +4,14 @@ class ApplicationController < ActionController::Base
   private
 
     def get_all_characters
-      Character.all.map &:id
+      Character.all
     end
 
-    def get_minor_characters
+    def get_main_characters
+      Character.find_all_by_is_main true
+    end
+
+    def get_minor_character_ids
       Character.all(conditions: { is_main: false } ).map &:id
     end
 

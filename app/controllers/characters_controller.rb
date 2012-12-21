@@ -2,7 +2,7 @@ class CharactersController < ApplicationController
   # GET /characters
   # GET /characters.json
   def index
-    @main_characters = Character.find_all_by_is_main(true)
+    @main_characters = get_main_characters
     @half_point = ((@main_characters.length + 1) / 2).ceil
 
     respond_to do |format|
