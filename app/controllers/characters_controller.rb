@@ -12,7 +12,8 @@ class CharactersController < ApplicationController
   end
 
   def robots
-    redirect_to "/dude/generate/#{params_to_url}"
+    url = ParamParser.new.params_to_url params
+    redirect_to "/dude/generate/#{url}"
   end
 
 

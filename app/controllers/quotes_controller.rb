@@ -3,7 +3,7 @@ class QuotesController < ApplicationController
   # GET /quotes.json
   def index
 
-    @options = ParamParser.new(params['options'], DEFAULT_OPTIONS, get_all_characters).validate_options
+    @options = ParamParser.new.parse_options(params['options'], DEFAULT_OPTIONS, get_all_characters).validate_options
 
     conditions = { character_id: @options[:characters] }
     conditions.merge! cussin: false if @options[:cussin] == false

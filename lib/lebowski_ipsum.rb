@@ -24,7 +24,7 @@ class LebowskiIpsum
 
     end
 
-    prepend_lorem_ipsum :lorem if type != 'sentences'
+    prepend_lorem_ipsum :lorem if @options[:startleb] and type != 'sentences'
     @lorem
   end
 
@@ -50,7 +50,7 @@ class LebowskiIpsum
       @lipsum.push format_sentences sentences
     end
 
-    prepend_lorem_ipsum :lebowski
+    prepend_lorem_ipsum :lebowski  if @options[:startleb]
     wrap_in_tags
 
     @lipsum
@@ -73,11 +73,17 @@ class LebowskiIpsum
 
     def prepend_lorem_ipsum key = :lebowski
       if key == :lebowski
-        @lipsum[0].insert 0, "Lebowski ipsum " if @options[:startleb]
+        downcase_first
+        @lipsum[0].insert 0, "Lebowski ipsum "
       else
-        @lorem[0].insert 0, "Lorem ipsum " if @options[:startleb]
+        @lorem[0].insert 0, "Lorem ipsum "
       end
     end
+
+    def downcase_first
+      @lipsum[0][0] = @lipsum[0][0].downcase
+    end
+
 
     def wrap_in_tags
       @lipsum.map { |s| s.insert(0, '<p>').concat '</p>' } if @options[:html]
