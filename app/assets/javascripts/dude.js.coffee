@@ -1,15 +1,12 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+li_options =
+  step_height:      700
+  initial_height:   1600
+  step_scroll:      450
+  body_main_diff:   236
+  anim_speed:       300
 
-step_height     = 700
-initial_height  = 1600
-step_scroll     = 450
-body_main_diff  = 236
-anim_speed      = 300
-step            = 1
-
+step = 1
 
 $(document).ready ->
 
@@ -51,19 +48,19 @@ $(document).ready ->
     event.preventDefault()
 
     $body.css
-      'min-height': initial_height + 'px'
+      'min-height': li_options.initial_height + 'px'
 
     $('html, body').stop(true,true).animate
-      scrollTop: step_scroll + 'px'
-      , anim_speed
+      scrollTop: li_options.step_scroll + 'px'
+      , (li_options.anim_speed)
 
     $main.stop(true,true).animate
-      height: (initial_height - body_main_diff)  + 'px'
-      , anim_speed
+      height: (li_options.initial_height - li_options.body_main_diff)  + 'px'
+      , (li_options.anim_speed)
 
     $ball.stop(true,true).animate
       top: '20px'
-      , anim_speed, ->
+      , (li_options.anim_speed), ->
 
         step = 2
 
@@ -72,7 +69,7 @@ $(document).ready ->
           marginTop: '250px'
 
         $step.removeClass('active').hide()
-        $('#step' + step).fadeIn(anim_speed, ->
+        $('#step' + step).fadeIn(li_options.anim_speed, ->
           $(this).addClass 'active'
         )
 
@@ -82,27 +79,27 @@ $(document).ready ->
     event.preventDefault()
 
     $body.css
-      'min-height' : (initial_height + step_height) + 'px'
+      'min-height' : (li_options.initial_height + li_options.step_height) + 'px'
 
     $('html, body').stop(true,true).animate
-      scrollTop: (step_height + step_scroll) + 'px'
-      , anim_speed
+      scrollTop: (li_options.step_height + li_options.step_scroll) + 'px'
+      , (li_options.anim_speed)
 
     $main.stop(true,true).animate
-      height: ((initial_height + step_height) - body_main_diff)  + 'px'
-      , anim_speed
+      height: ((li_options.initial_height + li_options.step_height) - li_options.body_main_diff)  + 'px'
+      , (li_options.anim_speed)
 
     # dummy animate
     $ball.stop(true,true).animate
       opacity :1
-      , anim_speed, ->
+      , (li_options.anim_speed), ->
 
         step = 3
 
         $body.removeClass('step1 step2 step4').addClass 'step3'
         $step.removeClass('active').hide()
 
-        $('#step' + step).fadeIn(anim_speed, ->
+        $('#step' + step).fadeIn(li_options.anim_speed, ->
           $(this).addClass 'active'
         )
 
@@ -112,27 +109,27 @@ $(document).ready ->
     event.preventDefault()
 
     $body.css
-      'min-height' : (initial_height + (step_height*2)) + 'px'
+      'min-height' : (li_options.initial_height + (li_options.step_height*2)) + 'px'
 
     $('html, body').stop(true,true).animate
-      scrollTop: (step_scroll + (step_height*2)) + 'px'
-      , anim_speed
+      scrollTop: (li_options.step_scroll + (li_options.step_height*2)) + 'px'
+      , (li_options.anim_speed)
 
     $main.stop(true,true).animate
-      height: ((initial_height + (step_height*2)) - body_main_diff)  + 'px'
-      , anim_speed
+      height: ((li_options.initial_height + (li_options.step_height*2)) - li_options.body_main_diff)  + 'px'
+      , (li_options.anim_speed)
 
     # dummy animate
     $ball.stop(true,true).animate
       opacity :1
-      , anim_speed, ->
+      , (li_options.anim_speed), ->
 
         step = 4
 
         $body.removeClass('step1 step2 step3').addClass 'step4'
         $step.removeClass('active').hide()
 
-        $('#step' + step).fadeIn(anim_speed, ->
+        $('#step' + step).fadeIn(li_options.anim_speed, ->
           $(this).addClass 'active'
         )
 
@@ -167,9 +164,9 @@ $(document).ready ->
       scroll = $(this).scrollTop()
 
       if scroll > step1Max and $step1.not ':visible'
-        $step1.fadeOut anim_speed
+        $step1.fadeOut li_options.anim_speed
       else
-        $step1.fadeIn anim_speed
+        $step1.fadeIn li_options.anim_speed
 
 
       # step2
@@ -177,34 +174,34 @@ $(document).ready ->
 
         # outside the zone
         if $step2.is ':visible'
-          $step2.fadeOut anim_speed
+          $step2.fadeOut li_options.anim_speed
 
       else if step >= 2
         # in the zone
         if $step2.not ':visible'
-          $step2.fadeIn anim_speed
+          $step2.fadeIn li_options.anim_speed
 
       # step3
       if scroll < step3Min or scroll > step3Max
 
         # outside the zone
         if $step3.is ':visible'
-          $step3.fadeOut anim_speed
+          $step3.fadeOut li_options.anim_speed
 
       else if step >= 3
         # in the zone
         if $step3.not ':visible'
-          $step3.fadeIn anim_speed
+          $step3.fadeIn li_options.anim_speed
 
       # step4
       if scroll < step4Min or scroll > step4Max
 
         # outside the zone
         if $step4.is ':visible'
-          $step4.fadeOut anim_speed
+          $step4.fadeOut li_options.anim_speed
 
       else if step >= 4
         # in the zone
         if $step4.not ':visible'
-          $step4.fadeIn anim_speed
+          $step4.fadeIn li_options.anim_speed
 
