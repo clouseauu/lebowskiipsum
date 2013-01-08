@@ -18,6 +18,7 @@ $(document).ready ->
       )
     )
 
+
   $body = $('body')
   $main = $('#main')
   $ball = $('#ball')
@@ -43,96 +44,36 @@ $(document).ready ->
       $(this).appendTo($faux).wrap '<span />'
 
 
-  $('#roll').click (event) ->
+  $('.move').click (event) ->
 
     event.preventDefault()
+    step = parseInt $(this).attr('data-step')
 
     $body.css
-      'min-height': li_options.initial_height + 'px'
+      'min-height': ( li_options.initial_height + ( li_options.step_height * (step - 1 ) )  ) + 'px'
 
     $('html, body').stop(true,true).animate
-      scrollTop: li_options.step_scroll + 'px'
+      scrollTop: ( li_options.step_scroll + ( li_options.step_height * (step - 1 ) ) ) + 'px'
       , (li_options.anim_speed)
 
     $main.stop(true,true).animate
-      height: (li_options.initial_height - li_options.body_main_diff)  + 'px'
+      height: ( (li_options.initial_height + (li_options.step_height * (step - 1 ) )) - li_options.body_main_diff )  + 'px'
       , (li_options.anim_speed)
 
     $ball.stop(true,true).animate
       top: '20px'
+      opacity: 1
       , (li_options.anim_speed), ->
 
-        step = 2
+        step += 1
 
-        $body.removeClass('step1 step3 step4').addClass 'step2'
-        $('header').css
-          marginTop: '250px'
+        $body.removeClass('step1 step2 step3 step4').addClass('step' + step)
+        $('header').css(marginTop: '250px') if step is 2
 
         $step.removeClass('active').hide()
         $('#step' + step).fadeIn(li_options.anim_speed, ->
           $(this).addClass 'active'
         )
-
-
-  $('#step2 .next').click (event) ->
-
-    event.preventDefault()
-
-    $body.css
-      'min-height' : (li_options.initial_height + li_options.step_height) + 'px'
-
-    $('html, body').stop(true,true).animate
-      scrollTop: (li_options.step_height + li_options.step_scroll) + 'px'
-      , (li_options.anim_speed)
-
-    $main.stop(true,true).animate
-      height: ((li_options.initial_height + li_options.step_height) - li_options.body_main_diff)  + 'px'
-      , (li_options.anim_speed)
-
-    # dummy animate
-    $ball.stop(true,true).animate
-      opacity :1
-      , (li_options.anim_speed), ->
-
-        step = 3
-
-        $body.removeClass('step1 step2 step4').addClass 'step3'
-        $step.removeClass('active').hide()
-
-        $('#step' + step).fadeIn(li_options.anim_speed, ->
-          $(this).addClass 'active'
-        )
-
-
-  $('#step3 .next').click (event) ->
-
-    event.preventDefault()
-
-    $body.css
-      'min-height' : (li_options.initial_height + (li_options.step_height*2)) + 'px'
-
-    $('html, body').stop(true,true).animate
-      scrollTop: (li_options.step_scroll + (li_options.step_height*2)) + 'px'
-      , (li_options.anim_speed)
-
-    $main.stop(true,true).animate
-      height: ((li_options.initial_height + (li_options.step_height*2)) - li_options.body_main_diff)  + 'px'
-      , (li_options.anim_speed)
-
-    # dummy animate
-    $ball.stop(true,true).animate
-      opacity :1
-      , (li_options.anim_speed), ->
-
-        step = 4
-
-        $body.removeClass('step1 step2 step3').addClass 'step4'
-        $step.removeClass('active').hide()
-
-        $('#step' + step).fadeIn(li_options.anim_speed, ->
-          $(this).addClass 'active'
-        )
-
 
   $('form').submit ->
 
