@@ -16,15 +16,4 @@ class CharactersController < ApplicationController
     redirect_to "/dude/generate/#{url}"
   end
 
-
-
-  private
-
-    def params_to_url
-      allowed_params = ['paragraphs','cussin','mixed','startleb','html','characters']
-      params.map { |k,v| if v.class == Array then "#{k}/#{v.join(',')}" else "#{k}/#{v}" end if allowed_params.include?(k) }
-        .delete_if {|x| x.nil? }
-        .join('/')
-    end
-
 end

@@ -17,10 +17,12 @@ class QuotesController < ApplicationController
     end
   end
 
-
   private
 
     def json_results
+      cast = get_all_characters
+      @options[:characters] = @options[:characters].inject({}) { |chars,c| chars.merge( { c => cast.select{ |m| m.id == c }.first.name } ) }
+
       {
       meta: @options,
       results: @lebowski_ipsum
