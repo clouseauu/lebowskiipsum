@@ -5,25 +5,27 @@ li_options =
   step_scroll:      450
   body_main_diff:   236
   anim_speed:       300
+  step1_min:        0
+  step1_max:        170
+  step2_min:        420
+  step2_max:        650
+  step3_min:        1120
+  step3_max:        1330
+  step4_min:        1810
+  step4_max:        1980
 
 step = 1
 
+glowNext = ->
+  $('.next span').delay(1000).fadeOut(700, ->
+    $(this).fadeIn(700, ->
+      glowNext()
+    )
+  )
+
 $(document).ready ->
 
-  glowNext = ->
-
-    $('.next span').delay(1000).fadeOut(700, ->
-      $(this).fadeIn(700, ->
-        glowNext()
-      )
-    )
-
-
   $body = $('body')
-  $main = $('#main')
-  $ball = $('#ball')
-  $step = $('.step')
-
   $step1 = $('#step1')
   $step2 = $('#step2')
   $step3 = $('#step3')
@@ -37,7 +39,6 @@ $(document).ready ->
   glowNext()
 
   $body.removeClass('step2 step3 step4').addClass 'step1'
-
 
   $('.p-radio label').each ->
       $faux = $(this).siblings 'div.radio'
@@ -56,11 +57,11 @@ $(document).ready ->
       scrollTop: ( li_options.step_scroll + ( li_options.step_height * (step - 1 ) ) ) + 'px'
       , (li_options.anim_speed)
 
-    $main.stop(true,true).animate
+    $('#main').stop(true,true).animate
       height: ( (li_options.initial_height + (li_options.step_height * (step - 1 ) )) - li_options.body_main_diff )  + 'px'
       , (li_options.anim_speed)
 
-    $ball.stop(true,true).animate
+    $('#ball').stop(true,true).animate
       top: '20px'
       opacity: 1
       , (li_options.anim_speed), ->
@@ -70,7 +71,7 @@ $(document).ready ->
         $body.removeClass('step1 step2 step3 step4').addClass('step' + step)
         $('header').css(marginTop: '250px') if step is 2
 
-        $step.removeClass('active').hide()
+        $('.step').removeClass('active').hide()
         $('#step' + step).fadeIn(li_options.anim_speed, ->
           $(this).addClass 'active'
         )
@@ -85,64 +86,22 @@ $(document).ready ->
       alert 'Whoa, man! this won\'t fill your doctoral thesis! 500 paragraphs should be enough.'
       return false
 
-
-
-  step1Min = 0
-  step1Max = 170
-
-  step2Min = 420
-  step2Max = 650
-
-  step3Min = 1120
-  step3Max = 1330
-
-  step4Min = 1810
-  step4Max = 1980
-
-
   $(window).scroll ->
 
       scroll = $(this).scrollTop()
 
-      if scroll > step1Max and $step1.not ':visible'
+      if scroll > li_options.step1_max and $step1.not ':visible'
         $step1.fadeOut li_options.anim_speed
       else
         $step1.fadeIn li_options.anim_speed
 
+      for s in [2..4]
+        $da_step = $("#step#{s}")
+        if scroll < li_options["step#{s}_min"] or scroll > li_options["step#{s}_max"]
 
-      # step2
-      if scroll < step2Min or scroll > step2Max
+          if $da_step.is ':visible' # outside the zone
+            $da_step.fadeOut li_options.anim_speed
 
-        # outside the zone
-        if $step2.is ':visible'
-          $step2.fadeOut li_options.anim_speed
-
-      else if step >= 2
-        # in the zone
-        if $step2.not ':visible'
-          $step2.fadeIn li_options.anim_speed
-
-      # step3
-      if scroll < step3Min or scroll > step3Max
-
-        # outside the zone
-        if $step3.is ':visible'
-          $step3.fadeOut li_options.anim_speed
-
-      else if step >= 3
-        # in the zone
-        if $step3.not ':visible'
-          $step3.fadeIn li_options.anim_speed
-
-      # step4
-      if scroll < step4Min or scroll > step4Max
-
-        # outside the zone
-        if $step4.is ':visible'
-          $step4.fadeOut li_options.anim_speed
-
-      else if step >= 4
-        # in the zone
-        if $step4.not ':visible'
-          $step4.fadeIn li_options.anim_speed
-
+        else
+          if ( ($da_step.not ':visible') && step >= s) # in the zone
+            $da_step.fadeIn li_options.anim_speed
