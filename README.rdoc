@@ -2,7 +2,7 @@
 
 This is the rails-backed engine powering lebowskiipsum.com. It is a place for me to tinker. You might find the stuff inside /lib of particular interest. Right now it's very specific to my own project, but it could easily be adapted to any other "ipsum" type generator with minimal effort.
 
-This project is part of a wider ecosystem. Ransom is a ruby gem to integrate this into rails and dude.py is a simple command-line tool to generate text from the terminal. _ars gratia artis_.
+This project is part of a wider ecosystem. Ransom is a ruby gem to integrate this into rails and dude.py is a simple command-line tool to generate text from the terminal. <em>ars gratia artis</em>.
 
 === License
 
