@@ -8,7 +8,7 @@ This project is part of a wider ecosystem. Ransom is a ruby gem to integrate thi
 
 (The MIT-License)
 
-Copyright (c) 2012 Daniel Angel Bradford
+Copyright (c) 2013 Daniel Angel Bradford
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
