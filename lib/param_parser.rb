@@ -61,7 +61,7 @@ class ParamParser
 
 
   def params_to_url params
-    allowed_params = ['paragraphs','cussin','mixed','startleb','html','characters']
+    allowed_params = ['paragraphs','cussin','mixed','startleb','html','characters', 'output']
     params.map { |k,v| if v.class == Array then "#{k}/#{v.join(',')}" else "#{k}/#{v}" end if allowed_params.include?(k) }
       .delete_if {|x| x.nil? }
       .join('/')
